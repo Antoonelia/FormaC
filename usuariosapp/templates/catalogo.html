@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Catálogo{% endblock %}
+
+{% block content %}
+<h1 class="h1body"> CÓMICS SHARINGANN</h1>
+<div>
+    <h2 style="color: white;
+                font-family: 'Courier New', Courier, monospace;
+                text-align: center; margin-top: 4rem;">
+        ¡Revisa nuestro catálogo! Tenemos los mejores cómics para ti.
+    </h2>
+</div>
+
+<div class="row">
+    {% for producto in productos %}
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div class="card mx-auto" style="width: 18rem;">
+            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+            <div class="card-body">
+                <h5 class="card-title">CÓMIC: {{ producto.nombre }}</h5>
+                <p class="card-text" data-precio="{{ producto.precio }}">{{ producto.precio }} CLP</p>
+                <button class="agregar btn btn-primary"
+                    onclick="agregarAlCarrito('{{ producto.nombre|escapejs }}', '{{ producto.precio|floatformat:2|escapejs }}')">Agregar al carrito</button>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="{% static 'assets/js/carrito.js' %}"></script>
+{% endblock %}
