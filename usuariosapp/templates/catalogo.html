@@ -4,7 +4,6 @@
 {% block title %}Catálogo{% endblock %}
 
 {% block content %}
-<h1 class="h1body"> CÓMICS SHARINGANN</h1>
 <div>
     <h2 style="color: white;
                 font-family: 'Courier New', Courier, monospace;
@@ -21,13 +20,17 @@
             <div class="card-body">
                 <h5 class="card-title">CÓMIC: {{ producto.nombre }}</h5>
                 <p class="card-text" data-precio="{{ producto.precio }}">{{ producto.precio }} CLP</p>
-                <button class="agregar btn btn-primary"
+                <p class="card-text"><strong>Stock:</strong> {{ producto.stock }}</p>
+                <button class="agregar btn btn-primary btn-dark"
                     onclick="agregarAlCarrito('{{ producto.nombre|escapejs }}', '{{ producto.precio|floatformat:2|escapejs }}')">Agregar al carrito</button>
-
             </div>
         </div>
     </div>
     {% endfor %}
+</div>
+
+<div style="position: fixed; bottom: 20px; right: 20px;">
+    <a href="{% url 'ver_carrito' %}" class="btn btn-primary btn-lg btn-dark">Ver mi carrito</a>
 </div>
 
 <script src="{% static 'assets/js/carrito.js' %}"></script>

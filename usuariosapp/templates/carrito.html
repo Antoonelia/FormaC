@@ -47,14 +47,20 @@
         </ul>
 
         <p id="total-carrito" class="text-end mt-3" style="color: white;"></p>
-            <div class="text-center mt-4">
-            <button onclick="comprar()" class="btn btn-success btn-lg">Comprar</button>
-            <button onclick="vaciarCarrito()" class="btn btn-danger btn-lg ms-3">Vaciar Carrito</button>
-            <a href="{% url 'catalogo' %}" class="btn btn-primary btn-lg ms-3">Seguir Comprando</a>
-            </div>
+        <div class="text-center mt-4">
+            <form id="form-comprar">
+                {% csrf_token %}
+                <button type="button" onclick="comprar()" class="btn btn-success btn-lg">Comprar</button>
+                <button type="button" onclick="vaciarCarrito()" class="btn btn-danger btn-lg ms-3">Vaciar Carrito</button>
+                <a href="{% url 'catalogo' %}" class="btn btn-primary btn-lg ms-3 btn-dark">Seguir Comprando</a>
+            </form>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="{% static 'assets/js/carrito.js' %}"></script>
+    <script>
+        const csrftoken = '{{ csrf_token }}';
+    </script>
 </body>
 </html>
